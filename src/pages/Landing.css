@@ -1,0 +1,10 @@
+.landing {
+  font-family: Arial, sans-serif;
+}
+
+.restauarant-title-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 0 32px 40px;
+}

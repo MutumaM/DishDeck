@@ -1,0 +1,23 @@
+.restaurant-title {
+    cursor: pointer;
+}
+
+.restaurant-title-photo {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.restaurant-title:hover .restaurant-title-photo {
+    transform: scale(1.03);
+}
+
+.restaurant-title-name {
+    text-align: center;
+    font-size: 15px;
+    margin-top: 10px;
+    color: #111111;
+}

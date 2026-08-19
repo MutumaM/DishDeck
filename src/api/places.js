@@ -16,7 +16,7 @@ export async function searchRestaurants(neighbourhoodName) {
                 "places.formattedAddress",
                 "places.rating",
                 "places.priceLevel",
-                "places.currentOperatingHours",
+                "places.currentOpeningHours",
                 "places.photos",
            ].join(",")
         },

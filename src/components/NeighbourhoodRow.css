@@ -1,0 +1,49 @@
+.restaurant-row-section {
+    padding: 0 32px;
+    margin-bottom: 40px;
+}
+
+.restaurant-row-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.restaurant-row-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.restaurant-row-arrows {
+    display: flex;
+    gap: 8px;
+}
+
+.restaurant-row-arrow {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #dddddd;
+    background: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.restaurant-row-arrow:disabled {
+    opacity: 0.3;
+    cursor: default
+}
+
+.restaurant-title-grid {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.restaurant-title-grid::-webkit-scrollbar {
+    display: none;
+}

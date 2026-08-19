@@ -12,7 +12,7 @@ function Landing () {
             <Hero />
 
             {neighbourhoods.map(function (name) {
-                return < NeighbourhoodRow key={name} NeighbourhoodName={name} />
+                return < NeighbourhoodRow key={name} neighbourhoodName={name} />
             })}
       
                 

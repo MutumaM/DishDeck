@@ -13,7 +13,7 @@ function NeighbourhoodRow(props) {
     useEffect(function () {
         async function loadRestaurants() {
             try{
-                const results = await searchRestaurants("Kilimani");
+                const results = await searchRestaurants([]);
                 setRestaurants(results);
             } catch (err) {
                 setError("Couldn't load restaurants right now.")
@@ -81,3 +81,5 @@ function NeighbourhoodRow(props) {
             </section>
     );
 }
+
+export default NeighbourhoodRow;

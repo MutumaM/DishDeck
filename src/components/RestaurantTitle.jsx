@@ -15,6 +15,11 @@ function RestaurantTitle(props) {
 
             <p className="restaurant-title-name">{name}</p>
             <p className="restaurant-title-category">{category}</p>
+
+            <div className="restaurant-title-overlay">
+                {category && <p className="restaurant-title-category">{category}</p>}
+                <p className="restaurant-title-name">{name}</p>
+            </div>
         </div>
     );
 }

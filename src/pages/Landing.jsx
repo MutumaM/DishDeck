@@ -67,7 +67,7 @@ function Landing () {
                         return(
                             <RestaurantTile
                                 key = {place.id}
-                                name = {place.displayname ? place.displayname.text : "Unnamed"}
+                                name = {place.displayName ? place.displayName.text : "Unnamed"}
                                 category = {place.formattedAddress}
                                 photoUrl = {photoName ? getPhotoUrl(photoName, 400) : "/hero-dining.jpeg"}
                             />

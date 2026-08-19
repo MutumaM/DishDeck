@@ -21,7 +21,7 @@ export async function searchRestaurants(neighbourhoodName) {
            ].join(",")
         },
         body: JSON.stringify({
-            textQuery: `restaurants in ${neighbourhoodName}, Nairobi`,
+            textQuery: `restaurants in ${neighbourhoodName} Nairobi Kenya`,
             maxResultCount: 10,
         }),
     });
@@ -30,7 +30,7 @@ export async function searchRestaurants(neighbourhoodName) {
         throw new Error(`Places search failed: ${response.status}`);
     }
 
-    const data = await response.json
+    const data = await response.json()
     return data.places || [];
 }
 

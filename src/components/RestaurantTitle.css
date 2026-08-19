@@ -3,7 +3,7 @@
 }
 
 .restaurant-title-photo {
-    width: 100%;
+    width: 20%;
     height: 130px;
     object-fit: cover;
     border-radius: 14px;
@@ -16,8 +16,14 @@
 }
 
 .restaurant-title-name {
-    text-align: center;
+    text-align: justify;
     font-size: 15px;
     margin-top: 10px;
     color: #111111;
+}
+
+.restaurant-title-category {
+  font-size: 12px;
+  color: #6a6a6a;
+  margin: 2px 0 0;
 }

@@ -1,16 +1,19 @@
 .hero{
     position: relative;
-    border-radius: 20px;
+    border-radius: 40px;
     overflow: hidden;
-    margin: 24px 32px;
+    margin: 4px auto;
     height: 340px;
+    width: 50%;
+    place-items: center;
 }
 
 .hero-photo {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: center;
     display: block;
+   
 }
 
 .hero-scrim {

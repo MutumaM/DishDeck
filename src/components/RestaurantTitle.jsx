@@ -1,11 +1,14 @@
+import "./RestaurantTitle.css";
+
 function RestaurantTitle(props) {
     const name = props.name
-    const photoURL = props.photoURL
+    const category = props.category
+    const photoUrl = props.photoUrl
 
     return(
         <div className="restaurant-title">
             <img 
-                src={photoURL} 
+                src={photoUrl} 
                 alt={name} 
                 className="restaurant-title-photo"
             />

@@ -39,12 +39,12 @@ function Landing () {
                <div className="restaurant-row-header">
                     <h3 className="restaurant-row-title">Featured restaurants</h3>
                     <div className="restaurant-row-arrows">
-                        <button className="restaurant-row-arrow" onClick={function () { scrollByOnePage(-1); }} aria-label="Scroll left">←</button>
-                        <button className="restaurant-row-arrow" onClick={function () { scrollByOnePage(1); }} aria-label="Scroll right">→</button>
+                        <button className="restaurant-row-arrow" onClick={function () { scrollByOnePage(-1); }} disabled = {atStart} aria-label="Scroll left">←</button>
+                        <button className="restaurant-row-arrow" onClick={function () { scrollByOnePage(1); }} disabled={atEnd} aria-label="Scroll right">→</button>
                     </div>
                </div>
 
-               <div className="restaurant-title-grid" ref={trackRef}>
+               <div className="restaurant-title-grid" ref={trackRef} onScroll={handleScroll}>
                     {featuredRetaurants.map(function (spot) {
                         return(
                             <RestaurantTile

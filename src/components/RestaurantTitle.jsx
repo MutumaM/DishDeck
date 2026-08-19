@@ -14,6 +14,7 @@ function RestaurantTitle(props) {
             />
 
             <p className="restaurant-title-name">{name}</p>
+            <p className="restaurant-title-category">{category}</p>
         </div>
     );
 }

@@ -1,7 +1,7 @@
 .restaurant-title {
     cursor: pointer;
     position: relative;
-    min-width: 20px;
+    width: 320px;
     height: 320px;
     flex-shrink: 0;
     scroll-snap-align: start;

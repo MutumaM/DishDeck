@@ -13,7 +13,7 @@ function NeighbourhoodRow(props) {
     useEffect(function () {
         async function loadRestaurants() {
             try{
-                const results = await searchRestaurants([]);
+                const results = await searchRestaurants(neighbourhoodName);
                 setRestaurants(results);
             } catch (err) {
                 setError("Couldn't load restaurants right now.")

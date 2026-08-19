@@ -13,7 +13,7 @@ export async function searchRestaurants(neighbourhoodName) {
            "X-Goog-FieldMask": [
                 "places.id",
                 "places.displayName",
-                "places.formattedAddress",
+                // "places.formattedAddress",
                 "places.rating",
                 "places.priceLevel",
                 "places.currentOpeningHours",
@@ -21,8 +21,8 @@ export async function searchRestaurants(neighbourhoodName) {
            ].join(",")
         },
         body: JSON.stringify({
-            textQuery: `restaurants in ${neighbourhoodName} Nairobi Kenya`,
-            maxResultCount: 10,
+            textQuery: `restaurants in ${neighbourhoodName} Nairobi `,
+            maxResultCount: 15,
         }),
     });
 

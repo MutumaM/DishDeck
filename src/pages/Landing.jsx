@@ -13,7 +13,7 @@ function Landing () {
     useEffect(function () {
         async function loadRestaurants() {
             try{
-                const results = await searchRestaurants("Westlands");
+                const results = await searchRestaurants("Kilimani");
                 setRestaurants(results);
             } catch (err) {
                 setError("Couldn't load restaurants right now.")

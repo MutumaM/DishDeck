@@ -44,3 +44,8 @@
     padding: 18px;
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
 }
+
+.restaurant-title-link {
+    text-decoration: none;
+    color: inherit;
+}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getPlaceDetails, getPhotoUrl } from "../api/places";
 import Navbar from "../components/Navbar";
+import "./RestaurantDetail.css";
 
 function RestaurantDetail() {
     const { placeId } = useParams()
@@ -30,7 +31,7 @@ function RestaurantDetail() {
     if (!place) return null;
 
     const name = place.displayName ? place.displayName.text : "Unnamed";
-    const photos = places.photos || [];
+    const photos = place.photos || [];
     const collagePhotos = photos.slice(0,3);
     const galleryPhotos = photos.slice(3,8);
 

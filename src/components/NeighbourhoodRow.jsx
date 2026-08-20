@@ -68,6 +68,7 @@ function NeighbourhoodRow(props) {
                         return(
                             <RestaurantTile
                                 key = {place.id}
+                                placeId = {place.id}
                                 name = {place.displayName ? place.displayName.text : "Unnamed"}
                                 category = {place.formattedAddress}
                                 photoUrl = {photoName ? getPhotoUrl(photoName, 400) : "/hero-dining.jpeg"}

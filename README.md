@@ -4,17 +4,19 @@ A restaurant discovery app for Nairobi.
 
 Live site: https://dish-deck-sigma.vercel.app
 
-Features
+1. Features
 Browse restaurants across six Nairobi neighbourhoods (Westlands, Kilimani, Parklands, Lavington, CBD, Langata)
 View a restaurant's full profile: photos, rating, reviews, opening hours, contact info, and an embedded map
 Filter by neighbourhood via the navbar dropdown
-Tech stack
+
+2. Tech stack
 Frontend: React (Vite)
 Routing: React Router
 Data: Google Places API (New) — Text Search + Place Details
 Map: Google Maps Embed API
 Deployment: Vercel
-How it works
+
+3. How it works
 
 Landing page shows one row per neighbourhood. Each row fetches its own restaurants from Google when it loads, tracks its own loading/error state, and scrolls independently. Clicking a restaurant card takes you to its detail page.
 
@@ -30,11 +32,11 @@ Photos are handled in two steps, since Places API (New) doesn't return direct im
 
 Field masks are used on every request to limit which fields Google returns 
 
-Data
+4. Data
 
 Restaurant data is fetched live from Google Places on each page load 
 
-Local setup
+5. Local setup
 bash
 npm install
 

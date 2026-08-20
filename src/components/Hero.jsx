@@ -1,6 +1,10 @@
 import "./Hero.css";
 
-function Hero () {
+function Hero (props) {
+    const searchTerm = props.searchTerm
+    const onSearchChange = props.onSearchChange
+
+
     return(
         <div className="hero">
             <img
@@ -16,7 +20,9 @@ function Hero () {
             <input 
                     type="text"
                     className="hero-search-input"
-                    placeholder="Search DishDeck"
+                    placeholder="Search by neighbourhood"
+                    value={searchTerm}
+                    onChange={function (e) {onSearchChange(e.target.value); }}
             />
             </div>
         </div>

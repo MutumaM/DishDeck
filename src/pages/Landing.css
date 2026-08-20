@@ -2,3 +2,8 @@
   font-family: Arial, sans-serif;
 }
 
+.landing-no-match {
+    text-align: center;
+    padding: 40px;
+    color: #666666;
+}

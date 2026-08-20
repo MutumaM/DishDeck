@@ -39,7 +39,7 @@ function RestaurantDetail() {
 
     return (
         <div className="detail-page">
-            <Navbar />
+            <Navbar showSearch={true} />
 
             {/* Photo collage strip */}
             <div className="detail-collage">
@@ -71,13 +71,20 @@ function RestaurantDetail() {
                             {place.rating && ` · ${place.rating}★ (${place.userRatingCount || 0} reviews)`}
                         </p>
 
-                        {galleryPhotos[0] && (
+                        {/* {galleryPhotos[0] && (
                             <img
                                 src={getPhotoUrl(galleryPhotos[0].name, 600)}
                                 alt={`${name} dish`}
                                 className="detail-dish-photo"
                             />
-                        )}
+                        )} */}
+                        <iframe
+                            className="detail-map"
+                            src={`https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_PLACES_API_KEY}&q=place_id:${placeId}`}
+                            loading="lazy"
+                            allowFullScreen
+                            title={`Map showing ${name}`}
+                        ></iframe>
 
                         {place.websiteUri && (
                             <a href={place.websiteUri} target="_blank" rel="noreferrer" className="detail-menu-btn">

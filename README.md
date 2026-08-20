@@ -1,16 +1,45 @@
-# React + Vite
+DishDeck
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A restaurant discovery app for Nairobi.
 
-Currently, two official plugins are available:
+Live site: https://dish-deck-sigma.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Features
+Browse restaurants across six Nairobi neighbourhoods (Westlands, Kilimani, Parklands, Lavington, CBD, Langata)
+View a restaurant's full profile: photos, rating, reviews, opening hours, contact info, and an embedded map
+Filter by neighbourhood via the navbar dropdown
+Tech stack
+Frontend: React (Vite)
+Routing: React Router
+Data: Google Places API (New) — Text Search + Place Details
+Map: Google Maps Embed API
+Deployment: Vercel
+How it works
 
-## React Compiler
+Landing page shows one row per neighbourhood. Each row fetches its own restaurants from Google when it loads, tracks its own loading/error state, and scrolls independently. Clicking a restaurant card takes you to its detail page.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Routing is handled by React Router with three routes:
 
-## Expanding the ESLint configuration
+/ — landing page
+/neighbourhood/:neighbourhoodName 
+/restaurant/:placeId — detail page
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Detail page reads placeId from the URL via useParams, then calls the Places Place Details endpoint to fetch the full record (photos, hours, reviews, contact info) for that one restaurant. The map is a Google Maps Embed iframe addressed directly by place_id.
+
+Photos are handled in two steps, since Places API (New) doesn't return direct image URLs: each photo object has a name reference, which gets exchanged for an actual image URL through a separate Place Photos endpoint (getPhotoUrl in api/places.js).
+
+Field masks are used on every request to limit which fields Google returns 
+
+Data
+
+Restaurant data is fetched live from Google Places on each page load 
+
+Local setup
+bash
+npm install
+
+Create a .env file in the project root:
+
+VITE_GOOGLE_PLACES_API_KEY 
+bash
+npm run dev

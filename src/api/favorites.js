@@ -1,0 +1,28 @@
+const BASE_URL =  "http://127.0.0.1:5555";
+
+export async function getFavorites() {
+    const response = await fetch(`${BASE_URL}/api/favorites`, {
+        credentials: "include",
+    });
+    if (!response.ok) throw new Error("Couldn't load favorites");
+    return response.json();
+}
+
+export async function addFavorite(placeId, restaurantName, note) {
+    const response = await fetch(`${BASE_URL}/api/favorites`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json"},
+        credentials: "include",
+        body: JSON.stringify({ place_id: placeId, restaurant_name: restaurantName, note})
+    });
+    if (!response.ok) throw new Error ("Couldn't save favorite");
+    return response.json();
+}
+
+export async function removeFavorites(favoriteid) {
+    const response = await fetch(`${BASE_URL}/api/favorites/${favoriteid}`, {
+        method: "DELETE",
+        credentials: "include"
+    });
+    if(!response.ok) throw new Error("Couldn't remove favorite")
+}

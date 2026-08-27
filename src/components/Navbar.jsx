@@ -1,12 +1,21 @@
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 const neighbourhoods = ["Westlands", "Kilimani", "Parklands", "Lavington", "CBD", "Langata"];
 
 function Navbar(props) {
     const showSearch = props.showSearch
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const { currentUser, logout } = useAuth();
+    const navigate = useNavigate();
+
+    async function handleLogout() {
+        await logout();
+        navigate("/");
+    }
 
     return(
         <nav className="navbar">
@@ -46,7 +55,14 @@ function Navbar(props) {
                 )}
             </div>
 
-            <button className="navbar-add-btn">+ Add restaurant</button>
+            {currentUser ? (
+                <div className="navbar-user">
+                    <Link to="/favorites" className="navbar-link">Favorites</Link>
+                    <button className="navbar-logout-btn" onClick={handleLogout}>Log out</button>
+                </div>
+            ) : (
+                <Link to="/login" className="navbar-add-btn">Log in</Link>
+            )}
         </nav>
     );
 }

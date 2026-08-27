@@ -89,3 +89,18 @@
 .navbar-dropdown-item:hover {
     background: #f5f5f5;
 }
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.navbar-logout-btn {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    cursor: pointer;
+}

@@ -17,7 +17,7 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-@app.route("/api/register", methods=[POST])
+@app.route("/api/register", methods=["POST"])
 def register():
     data = request.get_json()
 
@@ -28,6 +28,7 @@ def register():
     user = User(email=data["email"])
     user.set_password(data["password"])
     db.session.add(user)
+    db.session.commit() 
 
     login_user(user)
     return jsonify(user.to_dict()), 201
@@ -42,6 +43,55 @@ def me():
     if current_user.is_authenticated:
         return jsonify(current_user.to_dict())
     return jsonify({"error": "Not logged in"}), 401
+
+@app.route("/api/login", methods=["POST"])
+def login():
+    data = request.get_json()
+    user = User.query.filter_by(email = data["email"]).first()
+
+    if not user or not user.check_password(data["password"]):
+        return jsonify({"error": "Invalid email or password"}), 401
+
+    login_user(user)
+    return jsonify(user.to_dict())
+
+@app.route("/api/favorites", methods = ["POST"])
+@login_required
+def add_favorite():
+    data = request.get_json()
+
+    favorite = Favorite(
+        place_id=data["place_id"],
+        restaurant_name=data["restaurant_name"],
+        note=data.get("note"),
+        user_id=current_user.id
+    )
+    db.session.add(favorite)
+    db.session.commit()
+
+    return jsonify(favorite.to_dict()), 201
+
+@app.route("/api/favorites/<int:id>", methods=["DELETE"])
+@login_required
+def delete_favorite(id):
+    favorite = Favorite.query.get(id)
+
+    if not favorite:
+        return jsonify({"error": "Favorite not found"}), 404
+
+    if favorite.user_id != current_user.id:
+        return jsonify({"error": "Not authorized"}), 403
+
+    db.session.delete(favorite)
+    db.session.commit()
+    return {}, 204
+
+@app.route("/api/favorites", methods=["GET"])
+@login_required
+def get_favorites():
+    favorites = Favorite.query.filter_by(user_id=current_user.id).all()
+    return jsonify([f.to_dict() for f in favorites])
+
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)

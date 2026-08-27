@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import NeighbourhoodRow from "../components/NeighbourhoodRow";
 import "./Landing.css";
 import { useState } from "react";
+import AuthForm from "../components/Authform";
 
 const neighbourHoods = ["Westlands", "Kilimani", "Lavington", "Parklands", "Langata", "CBD"]
 
@@ -16,6 +17,7 @@ function Landing () {
     return (
         <div className="landing-page">
             <Navbar />
+            <AuthForm />
             <Hero searchTerm={searchTerm} onSearchChange={setSearchTerm} />
 
             {filteredNeighbourHoods.length > 0 ? (

@@ -38,35 +38,35 @@ function FavoritesPage() {
         );
     }
 
-    return (
-        <div>
-            <Navbar />
-            <h1 className="favorites-title">Your Favorites</h1>
+   return (
+    <div className="favorites-page-wrapper">
+        <Navbar />
+        <h1 className="favorites-title">Your Favorites</h1>
 
-            {isLoading && <p className="favorites-status">Loading...</p>}
-            {error && <p className="favorites-status">{error}</p>}
-            {!isLoading && !error && favorites.length === 0 && (
-                <p className="favorites-status">No favorites saved yet.</p>
-            )}
+        {isLoading && <p className="favorites-status">Loading...</p>}
+        {error && <p className="favorites-status">{error}</p>}
+        {!isLoading && !error && favorites.length === 0 && (
+            <p className="favorites-status">No favorites saved yet.</p>
+        )}
 
-            <div className="favorites-list">
-                {favorites.map(function (fav) {
-                    return (
-                        <div key={fav.id} className="favorites-item">
-                            <p className="favorites-item-name">{fav.restaurant_name}</p>
-                            {fav.note && <p className="favorites-item-note">{fav.note}</p>}
-                            <button
-                                className="favorites-remove-btn"
-                                onClick={function () { handleRemove(fav.id); }}
-                            >
-                                Remove
-                            </button>
-                        </div>
-                    );
-                })}
-            </div>
+        <div className="favorites-list">
+            {favorites.map(function (fav) {
+                return (
+                    <div key={fav.id} className="favorites-item">
+                        <p className="favorites-item-name">{fav.restaurant_name}</p>
+                        {fav.note && <p className="favorites-item-note">{fav.note}</p>}
+                        <button
+                            className="favorites-remove-btn"
+                            onClick={function () { handleRemove(fav.id); }}
+                        >
+                            Remove
+                        </button>
+                    </div>
+                );
+            })}
         </div>
-    );
+    </div>
+  );
 }
 
 export default FavoritesPage;

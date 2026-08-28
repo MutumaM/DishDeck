@@ -1,5 +1,6 @@
 import "./RestaurantTitle.css";
 import { Link } from "react-router-dom";
+import FavoriteButton from "./FavoriteButton";
 
 function RestaurantTitle(props) {
     const name = props.name
@@ -15,7 +16,11 @@ function RestaurantTitle(props) {
                     alt={name} 
                     className="restaurant-title-photo"
                 />
-                
+
+                <div className="favorite-btn-wrap">
+                    <FavoriteButton placeId={placeId} restaurantName={name} />
+                </div>
+
                 <div className="restaurant-title-overlay">
                     {category && <p className="restaurant-title-category">{category}</p>}
                     <p className="restaurant-title-name">{name}</p>

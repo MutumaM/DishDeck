@@ -1,4 +1,4 @@
-const BASE_URL =  "http://127.0.0.1:5555";
+const BASE_URL =  "http://localhost:5555";
 
 export async function getFavorites() {
     const response = await fetch(`${BASE_URL}/api/favorites`, {
@@ -19,7 +19,7 @@ export async function addFavorite(placeId, restaurantName, note) {
     return response.json();
 }
 
-export async function removeFavorites(favoriteid) {
+export async function removeFavorite(favoriteid) {
     const response = await fetch(`${BASE_URL}/api/favorites/${favoriteid}`, {
         method: "DELETE",
         credentials: "include"

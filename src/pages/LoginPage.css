@@ -1,0 +1,6 @@
+.login-page-wrapper {
+    min-height: 100vh;
+    background: #e0e5ec;
+    display: flex;
+    flex-direction: column;
+}

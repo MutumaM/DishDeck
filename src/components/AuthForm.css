@@ -1,52 +1,104 @@
 .auth-form {
+    max-width: 460px;
+    width: 90%;
+    margin: 4rem auto;
+    padding: 2.5rem 2.5rem;
+    background: #e0e0e0;
+    border-radius: 49px;
+    box-shadow:
+        35px 35px 89px #d5d5d5,
+        -35px -35px 89px #ebebeb;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    max-width: 320px;
-    margin: 0 auto;
-    padding: 24px;
+    gap: 1.25rem;
 }
 
 .auth-form-title {
     text-align: center;
-    margin: 0 0 8px;
+    color: #3a3f47;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
 }
 
 .auth-form-error {
-    color: #d32f2f;
-    font-size: 13px;
     text-align: center;
+    color: #d64545;
+    font-size: 0.9rem;
     margin: 0;
 }
 
 .auth-form-input {
-    padding: 10px 14px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 14px;
+    border: none;
+    outline: none;
+    padding: 0.9rem 1.1rem;
+    border-radius: 22px;
+    background: #e0e0e0;
+    box-shadow:
+        inset 8px 8px 20px #d5d5d5,
+        inset -8px -8px 20px #ebebeb;
+    color: #3a3f47;
+    font-size: 0.95rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: box-shadow 0.2s ease;
 }
-    
+
+.auth-form-input::placeholder {
+    color: #9099a3;
+}
+
+.auth-form-input:focus {
+    box-shadow:
+        inset 5px 5px 12px #d5d5d5,
+        inset -5px -5px 12px #ebebeb;
+}
+
 .auth-form-submit {
-    background-color: #2952e3;
-    color: white;
     border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 14px;
+    outline: none;
+    padding: 0.9rem;
+    border-radius: 22px;
+    background: #e0e0e0;
+    color: #3a3f47;
     font-weight: 600;
+    font-size: 0.95rem;
     cursor: pointer;
+    box-shadow:
+        10px 10px 24px #d5d5d5,
+        -10px -10px 24px #ebebeb;
+    transition: box-shadow 0.15s ease, transform 0.1s ease;
 }
 
-.auth-form-submit:disabled{
+.auth-form-submit:hover:not(:disabled) {
+    box-shadow:
+        6px 6px 14px #d5d5d5,
+        -6px -6px 14px #ebebeb;
+}
+
+.auth-form-submit:active:not(:disabled) {
+    box-shadow:
+        inset 6px 6px 14px #d5d5d5,
+        inset -6px -6px 14px #ebebeb;
+    transform: scale(0.98);
+}
+
+.auth-form-submit:disabled {
     opacity: 0.6;
-    cursor: default;
+    cursor: not-allowed;
 }
 
-.auth-form-toggle {
-    background: none;
+.auth-form-toogle {
     border: none;
-    color: #2952e3;
-    font-size: 13px;
+    background: none;
+    color: #6b7280;
+    font-size: 0.85rem;
+    text-align: center;
     cursor: pointer;
-    text-decoration: underline
+    text-decoration: underline;
+    padding: 0.25rem;
+}
+
+.auth-form-toogle:hover {
+    color: #3a3f47;
 }

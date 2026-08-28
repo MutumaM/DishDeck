@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import AuthForm from "../components/AuthForm";
+import "./LoginPage.css";
 
 function LoginPage() {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ function LoginPage() {
     }
 
     return (
-        <div>
+        <div className="login-page-wrapper">
             <Navbar />
             <AuthForm onSuccess={handleSuccess} />
         </div>

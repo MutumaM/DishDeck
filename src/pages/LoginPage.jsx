@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import AuthForm from "../components/Authform";
+import AuthForm from "../components/AuthForm";
 
 function LoginPage() {
     const navigate = useNavigate();

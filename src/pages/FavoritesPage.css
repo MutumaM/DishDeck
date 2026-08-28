@@ -1,0 +1,48 @@
+.favorites-title {
+    text-align: center;
+    font-size: 26px;
+    margin: 32px 0;
+}
+
+.favorites-status {
+    text-align: center;
+    padding: 40px;
+}
+
+.favorites-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 32px 40px;
+}
+
+.favorites-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+}
+
+.favorites-item-name {
+    font-weight: 600;
+    margin: 0;
+}
+
+.favorites-item-note {
+    font-size: 13px;
+    color: #666;
+    margin: 4px 0 0;
+}
+
+.favorites-remove-btn {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    cursor: pointer;
+}

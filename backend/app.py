@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify, session
 from flask_cors import CORS
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
@@ -5,10 +6,13 @@ from models import db, User, Favorite
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///dishdeck.db"
-app.config["SECRET_KEY"] = "replace-this"
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-fallback-key")
 
 db.init_app(app)
-CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
+CORS(app, supports_credentials=True, origins=[
+    "http://localhost:5173",
+    "https://dish-deck-sigma.vercel.app"
+])
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -60,6 +64,14 @@ def login():
 def add_favorite():
     data = request.get_json()
 
+    existing = Favorite.query.filter_by(
+        user_id=current_user.id,
+        place_id=data["place_id"]
+    ).first()
+
+    if existing:
+        return jsonify({"error": "Already saved"}), 400
+
     favorite = Favorite(
         place_id=data["place_id"],
         restaurant_name=data["restaurant_name"],
@@ -92,6 +104,17 @@ def get_favorites():
     favorites = Favorite.query.filter_by(user_id=current_user.id).all()
     return jsonify([f.to_dict() for f in favorites])
 
+@app.route("/api/favorites/check/<place_id>")
+@login_required
+def check_favorite(place_id):
+    favorite = Favorite.query.filter_by(
+        user_id=current_user.id,
+        place_id=place_id
+    ).first()
+
+    if favorite:
+        return jsonify({"is_saved": True, "favorite_id": favorite.id})
+    return jsonify({"is_saved": False})
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)

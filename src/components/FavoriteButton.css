@@ -26,3 +26,11 @@
 .favorite-btn-standalone:hover {
     background: #e0e0e0;
 }
+
+.favorite-btn-saved {
+    background: rgba(220, 50, 50, 0.15);
+}
+
+.favorite-btn-saved:hover {
+    background: rgba(220, 50, 50, 0.3);
+}

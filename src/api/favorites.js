@@ -26,3 +26,11 @@ export async function removeFavorite(favoriteid) {
     });
     if(!response.ok) throw new Error("Couldn't remove favorite")
 }
+
+export async function checkFavorite(placeId) {
+    const response = await fetch(`${BASE_URL}/api/favorites/check/${placeId}`, {
+        credentials: "include",
+    });
+    if (!response.ok) return { is_saved: false };
+    return response.json();
+}

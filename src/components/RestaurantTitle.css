@@ -60,3 +60,16 @@
 .restaurant-title:hover .favorite-btn-wrap .favorite-btn-overlay {
     opacity: 1;
 }
+
+.favorite-btn-overlay {
+    opacity: 0;
+}
+
+.restaurant-title:hover .favorite-btn-wrap .favorite-btn-overlay {
+    opacity: 1;
+}
+
+/* Saved hearts stay visible even without hovering */
+.favorite-btn-overlay.favorite-btn-saved {
+    opacity: 1;
+}

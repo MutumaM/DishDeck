@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { addFavorite, removeFavorite } from "../api/favorites";
 import "./FavoriteButton.css";
+import { useState, useEffect } from "react";
+import { addFavorite, removeFavorite, checkFavorite } from "../api/favorites";
 
 function FavoriteButton(props) {
     const placeId = props.placeId;
@@ -14,6 +14,16 @@ function FavoriteButton(props) {
 
     const [isSaved, setIsSaved] = useState(false);
     const [favoriteId, setFavoriteId] = useState(null);
+
+    useEffect(function () {
+    async function loadStatus() {
+        if (!currentUser) return;
+        const result = await checkFavorite(placeId);
+        setIsSaved(result.is_saved);
+        setFavoriteId(result.favorite_id || null);
+    }
+    loadStatus();
+    }, [placeId, currentUser]);
 
     async function handleClick(e) {
         e.preventDefault();  
@@ -37,7 +47,7 @@ function FavoriteButton(props) {
 
      return (
         <button
-            className={`favorite-btn favorite-btn-${variant}`}
+            className={`favorite-btn favorite-btn-${variant} ${isSaved ? "favorite-btn-saved" : ""}`}
             onClick={handleClick}
             aria-label="Save to favorites"
         >

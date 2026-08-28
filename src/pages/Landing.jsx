@@ -3,7 +3,7 @@ import Hero from "../components/Hero";
 import NeighbourhoodRow from "../components/NeighbourhoodRow";
 import "./Landing.css";
 import { useState } from "react";
-import AuthForm from "../components/Authform";
+import AuthForm from "../components/AuthForm";
 
 const neighbourHoods = ["Westlands", "Kilimani", "Lavington", "Parklands", "Langata", "CBD"]
 

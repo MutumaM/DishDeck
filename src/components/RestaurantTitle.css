@@ -57,6 +57,6 @@
     z-index: 2;
 }
 
-.restaurant-title:hover .favorite-btn-wrap .favorite-btn {
+.restaurant-title:hover .favorite-btn-wrap .favorite-btn-overlay {
     opacity: 1;
 }

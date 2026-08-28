@@ -17,7 +17,7 @@ function Landing () {
     return (
         <div className="landing-page">
             <Navbar />
-            <AuthForm />
+            {/* <AuthForm /> */}
             <Hero searchTerm={searchTerm} onSearchChange={setSearchTerm} />
 
             {filteredNeighbourHoods.length > 0 ? (

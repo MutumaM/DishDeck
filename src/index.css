@@ -1,25 +1,7 @@
 *, *::before, *::after {
-  box-sizing: border-box;
-  
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+    margin: 0;
 }
-
-
-:root {
-    --bg-primary: #121212;
-    --bg-secondary: #1e1e1e;
-    --bg-card: #1a1a1a;
-    --border-color: #333333;
-    --text-primary: #f2f2f2;
-    --text-secondary: #b0b0b0;
-    --text-muted: #808080;
-    --accent: #5b7cfa;
-    --accent-hover: #4a68e0;
-}
-
-

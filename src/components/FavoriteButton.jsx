@@ -7,6 +7,7 @@ import "./FavoriteButton.css";
 function FavoriteButton(props) {
     const placeId = props.placeId;
     const restaurantName = props.restaurantName;
+    const variant = props.variant || "overlay";
 
     const { currentUser } = useAuth();
     const navigate = useNavigate();
@@ -34,11 +35,15 @@ function FavoriteButton(props) {
         }
     }
 
-    return (
-        <button className="favorite-btn" onClick={handleClick} aria-label="Save to favorites">
+     return (
+        <button
+            className={`favorite-btn favorite-btn-${variant}`}
+            onClick={handleClick}
+            aria-label="Save to favorites"
+        >
             {isSaved ? "❤️" : "🤍"}
         </button>
-    );
+     );
 }
 
 export default FavoriteButton;

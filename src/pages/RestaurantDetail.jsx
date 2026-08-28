@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { getPlaceDetails, getPhotoUrl } from "../api/places";
 import Navbar from "../components/Navbar";
 import "./RestaurantDetail.css";
+import FavoriteButton from "../components/FavoriteButton";
+
 
 function RestaurantDetail() {
     const { placeId } = useParams()
@@ -60,7 +62,10 @@ function RestaurantDetail() {
             </div>
 
             <div className="detail-body">
-                <h1 className="detail-title">{name}</h1>
+                <div className="detail-title-row">
+                    <h1 className="detail-title">{name}</h1>
+                    <FavoriteButton placeId={placeId} restaurantName={name} variant="standalone" />
+                </div>
                 <hr className="detail-divider" />
 
                 <div className="detail-columns">

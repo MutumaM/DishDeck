@@ -5,10 +5,18 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from models import db, User, Favorite
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///dishdeck.db"
+
+db_url = os.environ.get("DATABASE_URL", "sqlite:///dishdeck.db")
+if db_url.startswith("postgres://"):
+      db_url = db_url.replace("postgres://", "postgresql://", 1)
+app.config["SQLALCHEMY_DATABASE_URI"] = db_url
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-fallback-key")
 
+
 db.init_app(app)
+with app.app_context():
+    db.create_all()
+
 CORS(app, supports_credentials=True, origins=[
     "http://localhost:5173",
     "https://dish-deck-sigma.vercel.app"

@@ -114,6 +114,24 @@ def get_favorites():
     favorites = Favorite.query.filter_by(user_id=current_user.id).all()
     return jsonify([f.to_dict() for f in favorites])
 
+@app.route("/api/favorites/<int:id>", methods=["PATCH"])
+@login_required
+def update_favorite(id):
+    favorite = Favorite.query.get(id)
+
+    if not favorite:
+        return jsonify({"error": "Favorite not found"}), 404
+
+    if favorite.user_id != current_user.id:
+        return jsonify({"error": "Not authorized"}), 403
+
+    data = request.get_json()
+    if "note" in data:
+        favorite.note = data["note"]
+
+    db.session.commit()
+    return jsonify(favorite.to_dict())
+
 @app.route("/api/favorites/check/<place_id>")
 @login_required
 def check_favorite(place_id):

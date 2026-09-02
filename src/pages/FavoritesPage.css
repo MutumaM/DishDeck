@@ -1,7 +1,22 @@
+.favorites-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 28px;
+}
+
 .favorites-title {
-    text-align: center;
+    font-family: var(--font-voice, serif);
     font-size: 26px;
-    margin: 32px 0;
+    font-weight: 500;
+    text-align: center;
+    margin: 0 0 4px;
+}
+
+.favorites-count {
+    font-size: 13px;
+    color: #777777;
+    text-align: center;
+    margin: 0 0 24px;
 }
 
 .favorites-status {
@@ -12,37 +27,73 @@
 .favorites-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 0 32px 40px;
+    gap: 16px;
 }
 
-.favorites-item {
+.favorites-card {
+    display: flex;
+    gap: 16px;
+    background: white;
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.favorites-card-photo {
+    width: 88px;
+    height: 88px;
+    border-radius: 10px;
+    background: #fdf0dc;
+    color: #b8722f;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.favorites-card-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.favorites-card-top-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px;
-    border: 1px solid #e5e5e5;
-    border-radius: 12px;
+    gap: 8px;
 }
 
-.favorites-item-name {
-    font-weight: 600;
+.favorites-card-name {
+    font-size: 14px;
+    font-weight: 500;
     margin: 0;
-}
-
-.favorites-item-note {
-    font-size: 13px;
-    color: #666;
-    margin: 4px 0 0;
 }
 
 .favorites-remove-btn {
     background: none;
-    border: 1px solid #ddd;
-    padding: 6px 14px;
-    border-radius: 999px;
-    font-size: 12px;
+    border: none;
+    padding: 4px;
     cursor: pointer;
+    color: #999999;
+    font-size: 16px;
+}
+
+.favorites-remove-btn:hover {
+    color: #ef4444;
+}
+
+.favorites-note-input {
+    width: 100%;
+    font-size: 12px;
+    border: 0.5px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 7px 10px;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
+
+.favorites-note-input:focus {
+    outline: none;
+    border-color: #2952e3;
 }

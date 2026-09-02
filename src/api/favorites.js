@@ -34,3 +34,14 @@ export async function checkFavorite(placeId) {
     if (!response.ok) return { is_saved: false };
     return response.json();
 }
+
+export async function updateFavoriteNote(favoriteId, note) {
+    const response = await fetch(`${BASE_URL}/api/favorites/${favoriteId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ note }),
+    });
+    if (!response.ok) throw new Error("Couldn't update note");
+    return response.json();
+}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getFavorites, removeFavorite } from "../api/favorites";
+import { getFavorites, removeFavorite, updateFavoriteNote } from "../api/favorites";
 import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
 import "./FavoritesPage.css";
@@ -29,10 +29,24 @@ function FavoritesPage() {
         setFavorites(favorites.filter(function (f) { return f.id !== favoriteId; }));
     }
 
+    function handleNoteChange(favoriteId, newNote) {
+        setFavorites(favorites.map(function (f) {
+            return f.id === favoriteId ? { ...f, note: newNote } : f;
+        }));
+    }
+
+    async function handleNoteBlur(favoriteId, note) {
+        try {
+            await updateFavoriteNote(favoriteId, note);
+        } catch (err) {
+            // note update failed silently for now — could add a toast later
+        }
+    }
+
     if (!currentUser) {
         return (
             <div>
-                <Navbar />
+                <Navbar showSearch={false} />
                 <p className="favorites-status">Log in to see your saved restaurants.</p>
             </div>
         );
@@ -40,32 +54,54 @@ function FavoritesPage() {
 
     return (
         <div>
-            <Navbar />
-            <h1 className="favorites-title">Your Favorites</h1>
+            <Navbar showSearch={false} />
 
-            {isLoading && <p className="favorites-status">Loading...</p>}
-            {error && <p className="favorites-status">{error}</p>}
-            {!isLoading && !error && favorites.length === 0 && (
-                <p className="favorites-status">No favorites saved yet.</p>
-            )}
+            <div className="favorites-page">
+                <p className="favorites-title">Your favorites</p>
+                {!isLoading && !error && (
+                    <p className="favorites-count">{favorites.length} saved restaurants</p>
+                )}
 
-            <div className="favorites-list">
-                {favorites.map(function (fav) {
-                    return (
-                        <div key={fav.id} className="favorites-item">
-                            <p className="favorites-item-name">{fav.restaurant_name}</p>
-                            {fav.note && <p className="favorites-item-note">{fav.note}</p>}
-                            <button
-                                className="favorites-remove-btn"
-                                onClick={function () { handleRemove(fav.id); }}
-                            >
-                                Remove
-                            </button>
-                        </div>
-                    );
-                })}
+                {isLoading && <p className="favorites-status">Loading...</p>}
+                {error && <p className="favorites-status">{error}</p>}
+                {!isLoading && !error && favorites.length === 0 && (
+                    <p className="favorites-status">No favorites saved yet.</p>
+                )}
+
+                <div className="favorites-list">
+                    {favorites.map(function (fav) {
+                        return (
+                            <div key={fav.id} className="favorites-card">
+                                <div className="favorites-card-photo">
+                                    <i className="ti ti-photo" aria-hidden="true"></i>
+                                </div>
+                                <div className="favorites-card-body">
+                                    <div className="favorites-card-top-row">
+                                        <p className="favorites-card-name">{fav.restaurant_name}</p>
+                                        <button
+                                            className="favorites-remove-btn"
+                                            onClick={function () { handleRemove(fav.id); }}
+                                            aria-label="Remove from favorites"
+                                        >
+                                            <i className="ti ti-trash"></i>
+                                        </button>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="favorites-note-input"
+                                        placeholder="Add a note — try the ribs, book ahead..."
+                                        value={fav.note || ""}
+                                        onChange={function (e) { handleNoteChange(fav.id, e.target.value); }}
+                                        onBlur={function (e) { handleNoteBlur(fav.id, e.target.value); }}
+                                    />
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );
 }
+
 export default FavoritesPage;

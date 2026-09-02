@@ -1,155 +1,241 @@
+
+.detail-page {
+    --dd-bg: #FDFCFA;
+    --dd-surface: #FFFFFF;
+    --dd-surface-soft: #F6F5F2;
+    --dd-border: #E5E3DD;
+    --dd-ink: #1B1B18;
+    --dd-ink-soft: #6D6C66;
+    --dd-accent: #223B2C;
+    --dd-accent-deep: #16281D;
+    --dd-accent-tint: #E9EDE9;
+    --dd-green: #3F7D4C;
+    --dd-green-tint: #E4EEDD;
+ 
+    background: var(--dd-bg);
+    color: var(--dd-ink);
+    font-family: 'Karla', sans-serif;
+    min-height: 100vh;
+}
+ 
 .detail-status {
     padding: 40px;
     text-align: center;
     font-size: 16px;
+    color: var(--dd-ink-soft);
 }
-
+ 
+/* ---- Collage ---- */
 .detail-collage {
     display: grid;
     grid-template-columns: 1.4fr 1fr 1fr;
-    grid-template-rows: 320px; 
-    gap: 4px;
+    grid-template-rows: 320px;
+    gap: 3px;
     height: 320px;
     overflow: hidden;
+    background: var(--dd-accent-tint);
 }
-
+ 
 .detail-collage-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
-
+ 
+/* ---- Body / header ---- */
 .detail-body {
     padding: 32px;
     max-width: 1100px;
     margin: 0 auto;
 }
-
-.detail-title {
-    font-size: 30px;
-    font-weight: 600;
-    margin: 0 0 12px;
+ 
+.detail-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
 }
-
+ 
+.detail-title {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
+    color: var(--dd-ink);
+}
+ 
 .detail-divider {
     border: none;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--dd-border);
     margin: 0 0 24px;
 }
-
+ 
+/* ---- Columns ---- */
 .detail-columns {
     display: grid;
     grid-template-columns: 1.6fr 1fr;
     gap: 32px;
 }
-
+ 
+.detail-main {
+    min-width: 0;
+}
+ 
+.detail-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+ 
 .detail-description {
     font-size: 15px;
     line-height: 1.7;
-    color: #333333;
+    color: var(--dd-ink-soft);
     margin: 0 0 20px;
 }
-
+ 
 .detail-dish-photo {
     width: 100%;
     height: 280px;
     object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+ 
+.detail-map {
+    width: 100%;
+    height: 240px;
+    border: 1px solid var(--dd-border);
     border-radius: 12px;
     margin-bottom: 20px;
 }
-
+ 
+/* ---- Buttons ---- */
 .detail-menu-btn {
     display: inline-block;
-    background-color: #2952e3;
-    color: white;
+    background-color: var(--dd-accent);
+    color: #FFFFFF;
     text-decoration: none;
     padding: 12px 28px;
-    border-radius: 8px;
+    border-radius: 999px;
     font-size: 14px;
     font-weight: 600;
+    transition: background-color 0.15s ease;
 }
-
+ 
 .detail-menu-btn:hover {
-    background-color: #1f3fb8;
+    background-color: var(--dd-accent-deep);
 }
-
+ 
+.detail-menu-btn:focus-visible {
+    outline: 2px solid var(--dd-accent-deep);
+    outline-offset: 2px;
+}
+ 
+/* ---- Sidebar cards ---- */
 .detail-info-card {
-    background: #f7f7f7;
-    border-radius: 14px;
+    background: var(--dd-surface-soft);
+    border: 1px solid var(--dd-border);
+    border-radius: 16px;
     padding: 20px;
-    margin-bottom: 16px;
 }
-
+ 
 .detail-open-status {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     margin: 0 0 12px;
+    color: var(--dd-green);
 }
-
+ 
 .detail-contact-row {
     font-size: 14px;
+    color: var(--dd-ink);
     margin: 8px 0;
 }
-
+ 
 .detail-hours-card {
-    background: #ffffff;
-    border: 1px solid #e5e5e5;
-    border-radius: 14px;
+    background: var(--dd-surface);
+    border: 1px solid var(--dd-border);
+    border-radius: 16px;
     padding: 20px;
 }
-
+ 
 .detail-hours-title {
-    font-size: 16px;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
     font-weight: 600;
     margin: 0 0 12px;
+    color: var(--dd-ink);
 }
-
+ 
 .detail-hours-row {
     font-size: 13px;
-    color: #555555;
+    color: var(--dd-ink-soft);
     margin: 6px 0;
 }
-
+ 
+/* ---- Gallery ---- */
 .detail-gallery {
     display: flex;
     gap: 12px;
     margin-top: 32px;
     overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-color: var(--dd-accent) var(--dd-accent-tint);
+    scrollbar-width: thin;
 }
-
+ 
 .detail-gallery-photo {
     width: 160px;
     height: 130px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 8px;
     flex-shrink: 0;
 }
-
+ 
+/* ---- Reviews ---- */
 .detail-reviews {
     margin-top: 32px;
 }
-
+ 
 .detail-review-item {
-    margin-bottom: 16px;
+    background: var(--dd-surface-soft);
+    border: 1px solid var(--dd-border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
 }
-
+ 
 .detail-review-author {
     font-size: 14px;
     font-weight: 600;
     margin: 0 0 4px;
+    color: var(--dd-ink);
 }
-
+ 
 .detail-review-text {
     font-size: 14px;
-    color: #444444;
+    color: var(--dd-ink-soft);
     margin: 0;
+    line-height: 1.6;
 }
-
-.detail-map {
-    width: 100%;
-    height: 240px;
-    border: none;
-    border-radius: 12px;
-    margin-bottom: 20px;
+ 
+/* ---- Responsive ---- */
+@media (max-width: 760px) {
+    .detail-collage {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 160px 160px;
+        height: auto;
+    }
+ 
+    .detail-columns {
+        grid-template-columns: 1fr;
+    }
+ 
+    .detail-title {
+        font-size: 26px;
+    }
 }
+ 

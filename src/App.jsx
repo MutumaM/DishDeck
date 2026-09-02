@@ -4,6 +4,7 @@ import RestaurantDetail from "./pages/RestaurantDetail";
 import { AuthProvider } from "./context/AuthContext";
 import LoginPage from "./pages/LoginPage";
 import FavoritesPage from "./pages/FavoritesPage";
+import NeighbourhoodResults from "./pages/NeighbourhoodResults";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/neighbourhoods" element={<div>Neighbourhoods page coming soon</div>} />
+          <Route path="/neighbourhood/:neighbourhoodName" element={<NeighbourhoodResults />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

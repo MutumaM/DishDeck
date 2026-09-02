@@ -54,14 +54,16 @@ function Hero() {
 
                 <div className="hero-pills">
                     {neighbourhoods.map(function (name, index) {
+                        const linkTarget = "/neighbourhood/" + name.replace("the ", "");
+                        const label = name.replace("the ", "");
+                        const delay = (400 + index * 90) + "ms";
+
                         return (
-                            <a>
-                                key={name}
-                                href={`/neighbourhood/${name.replace("the ", "")}`}
-                                className="hero-pill"
-                                style={{ animationDelay: `${400 + index * 90}ms` }}
-                            
-                                {name.replace("the ", "")}
+                            <a 
+                            key={name} 
+                            href={linkTarget} 
+                            className="hero-pill" 
+                            style={{ animationDelay: delay }}> {label}
                             </a>
                         );
                     })}

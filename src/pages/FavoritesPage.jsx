@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getFavorites, removeFavorite, updateFavoriteNote } from "../api/favorites";
 import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
@@ -43,6 +44,15 @@ function FavoritesPage() {
         }
     }
 
+    async function handleClearNote(favoriteId) {
+        handleNoteChange(favoriteId, "");
+        try {
+            await updateFavoriteNote(favoriteId, "");
+        } catch (err) {
+            // clear failed silently for now
+        }
+    }
+
     if (!currentUser) {
         return (
             <div>
@@ -77,7 +87,9 @@ function FavoritesPage() {
                                 </div>
                                 <div className="favorites-card-body">
                                     <div className="favorites-card-top-row">
-                                        <p className="favorites-card-name">{fav.restaurant_name}</p>
+                                        <Link to={`/restaurant/${fav.place_id}`} className="favorites-card-name-link">
+                                            <p className="favorites-card-name">{fav.restaurant_name}</p>
+                                        </Link>
                                         <button
                                             className="favorites-remove-btn"
                                             onClick={function () { handleRemove(fav.id); }}
@@ -86,14 +98,26 @@ function FavoritesPage() {
                                             <i className="ti ti-trash"></i>
                                         </button>
                                     </div>
-                                    <input
-                                        type="text"
-                                        className="favorites-note-input"
-                                        placeholder="Add a note — try the ribs, book ahead..."
-                                        value={fav.note || ""}
-                                        onChange={function (e) { handleNoteChange(fav.id, e.target.value); }}
-                                        onBlur={function (e) { handleNoteBlur(fav.id, e.target.value); }}
-                                    />
+
+                                    <div className="favorites-note-row">
+                                        <input
+                                            type="text"
+                                            className="favorites-note-input"
+                                            placeholder="Add a note — try the ribs, book ahead..."
+                                            value={fav.note || ""}
+                                            onChange={function (e) { handleNoteChange(fav.id, e.target.value); }}
+                                            onBlur={function (e) { handleNoteBlur(fav.id, e.target.value); }}
+                                        />
+                                        {fav.note && (
+                                            <button
+                                                className="favorites-note-clear-btn"
+                                                onClick={function () { handleClearNote(fav.id); }}
+                                                aria-label="Clear note"
+                                            >
+                                                <i className="ti ti-x"></i>
+                                            </button>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         );

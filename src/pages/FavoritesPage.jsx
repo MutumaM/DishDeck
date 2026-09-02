@@ -103,7 +103,7 @@ function FavoritesPage() {
                                         <input
                                             type="text"
                                             className="favorites-note-input"
-                                            placeholder="Add a note — try the ribs, book ahead..."
+                                            placeholder="Add a note — try the ribs"
                                             value={fav.note || ""}
                                             onChange={function (e) { handleNoteChange(fav.id, e.target.value); }}
                                             onBlur={function (e) { handleNoteBlur(fav.id, e.target.value); }}

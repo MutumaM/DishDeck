@@ -1,4 +1,5 @@
-detail-page {
+/* ---- Tokens ---- */
+.detail-page {
     --dd-bg: #FDFCFA;
     --dd-surface: #FFFFFF;
     --dd-surface-soft: #F6F5F2;
@@ -8,20 +9,20 @@ detail-page {
     --dd-accent: #2F5FD9;
     --dd-accent-deep: #1E44A8;
     --dd-accent-tint: #E6EDFB;
- 
+
     background: var(--dd-bg);
     color: var(--dd-ink);
     font-family: 'Karla', sans-serif;
     min-height: 100vh;
 }
- 
+
 .detail-status {
     padding: 40px;
     text-align: center;
     font-size: 16px;
     color: var(--dd-ink-soft);
 }
- 
+
 /* ---- Collage ---- */
 .detail-collage {
     display: grid;
@@ -32,28 +33,28 @@ detail-page {
     overflow: hidden;
     background: var(--dd-accent-tint);
 }
- 
+
 .detail-collage-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
- 
+
 /* ---- Body / header ---- */
 .detail-body {
     padding: 32px;
     max-width: 1100px;
     margin: 0 auto;
 }
- 
+
 .detail-title-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
 }
- 
+
 .detail-title {
     font-family: 'Fraunces', serif;
     font-size: 32px;
@@ -62,37 +63,37 @@ detail-page {
     margin: 0 0 12px;
     color: var(--dd-ink);
 }
- 
+
 .detail-divider {
     border: none;
     border-top: 1px solid var(--dd-border);
     margin: 0 0 24px;
 }
- 
+
 /* ---- Columns ---- */
 .detail-columns {
     display: grid;
     grid-template-columns: 1.6fr 1fr;
     gap: 32px;
 }
- 
+
 .detail-main {
     min-width: 0;
 }
- 
+
 .detail-sidebar {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
- 
+
 .detail-description {
     font-size: 15px;
     line-height: 1.7;
     color: var(--dd-ink-soft);
     margin: 0 0 20px;
 }
- 
+
 .detail-dish-photo {
     width: 100%;
     height: 280px;
@@ -100,7 +101,7 @@ detail-page {
     border-radius: 10px;
     margin-bottom: 20px;
 }
- 
+
 .detail-map {
     width: 100%;
     height: 240px;
@@ -108,7 +109,7 @@ detail-page {
     border-radius: 12px;
     margin-bottom: 20px;
 }
- 
+
 /* ---- Buttons ---- */
 .detail-menu-btn {
     display: inline-block;
@@ -121,16 +122,16 @@ detail-page {
     font-weight: 600;
     transition: background-color 0.15s ease;
 }
- 
+
 .detail-menu-btn:hover {
     background-color: var(--dd-accent-deep);
 }
- 
+
 .detail-menu-btn:focus-visible {
     outline: 2px solid var(--dd-accent-deep);
     outline-offset: 2px;
 }
- 
+
 /* ---- Sidebar cards ---- */
 .detail-info-card {
     background: var(--dd-surface-soft);
@@ -138,27 +139,27 @@ detail-page {
     border-radius: 16px;
     padding: 20px;
 }
- 
+
 .detail-open-status {
     font-size: 15px;
     font-weight: 600;
     margin: 0 0 12px;
     color: var(--dd-accent);
 }
- 
+
 .detail-contact-row {
     font-size: 14px;
     color: var(--dd-ink);
     margin: 8px 0;
 }
- 
+
 .detail-hours-card {
     background: var(--dd-surface);
     border: 1px solid var(--dd-border);
     border-radius: 16px;
     padding: 20px;
 }
- 
+
 .detail-hours-title {
     font-family: 'Fraunces', serif;
     font-size: 17px;
@@ -166,13 +167,13 @@ detail-page {
     margin: 0 0 12px;
     color: var(--dd-ink);
 }
- 
+
 .detail-hours-row {
     font-size: 13px;
     color: var(--dd-ink-soft);
     margin: 6px 0;
 }
- 
+
 /* ---- Gallery ---- */
 .detail-gallery {
     display: flex;
@@ -183,7 +184,7 @@ detail-page {
     scrollbar-color: var(--dd-accent) var(--dd-accent-tint);
     scrollbar-width: thin;
 }
- 
+
 .detail-gallery-photo {
     width: 160px;
     height: 130px;
@@ -191,12 +192,12 @@ detail-page {
     border-radius: 8px;
     flex-shrink: 0;
 }
- 
+
 /* ---- Reviews ---- */
 .detail-reviews {
     margin-top: 32px;
 }
- 
+
 .detail-review-item {
     background: var(--dd-surface-soft);
     border: 1px solid var(--dd-border);
@@ -204,21 +205,21 @@ detail-page {
     padding: 14px 16px;
     margin-bottom: 12px;
 }
- 
+
 .detail-review-author {
     font-size: 14px;
     font-weight: 600;
     margin: 0 0 4px;
     color: var(--dd-ink);
 }
- 
+
 .detail-review-text {
     font-size: 14px;
     color: var(--dd-ink-soft);
     margin: 0;
     line-height: 1.6;
 }
- 
+
 /* ---- Responsive ---- */
 @media (max-width: 760px) {
     .detail-collage {
@@ -226,13 +227,12 @@ detail-page {
         grid-template-rows: 160px 160px;
         height: auto;
     }
- 
+
     .detail-columns {
         grid-template-columns: 1fr;
     }
- 
+
     .detail-title {
         font-size: 26px;
     }
 }
- 

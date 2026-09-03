@@ -5,9 +5,8 @@ import AuthForm from "../components/AuthForm";
 import "./LoginPage.css";
 
 const slidePhotos = [
-    "login-page-photo-1",
-    "login-page-photo-2",
-    "login-page-photo-3",
+    "login-page-photo-2.jpg",
+    "login-page-photo-3.jpg",
 ];
 
 function LoginPage() {

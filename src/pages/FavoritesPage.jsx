@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getFavorites, removeFavorite, updateFavoriteNote } from "../api/favorites";
+import { getPlaceDetails, getPhotoUrl } from "../api/places";
 import { useAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar";
 import "./FavoritesPage.css";
@@ -15,7 +16,18 @@ function FavoritesPage() {
         async function loadFavorites() {
             try {
                 const data = await getFavorites();
-                setFavorites(data);
+
+                const withPhotos = await Promise.all(data.map(async function (fav) {
+                    try {
+                        const details = await getPlaceDetails(fav.place_id);
+                        const photoName = details.photos && details.photos[0] ? details.photos[0].name : null;
+                        return { ...fav, photoName: photoName };
+                    } catch (err) {
+                        return { ...fav, photoName: null };
+                    }
+                }));
+
+                setFavorites(withPhotos);
             } catch (err) {
                 setError("Couldn't load your favorites.");
             } finally {
@@ -66,38 +78,45 @@ function FavoritesPage() {
         <div>
             <Navbar showSearch={false} />
 
-            <div className="favorites-page">
+            <div className="favorites-header">
                 <p className="favorites-title">Your favorites</p>
                 {!isLoading && !error && (
                     <p className="favorites-count">{favorites.length} saved restaurants</p>
                 )}
+            </div>
 
-                {isLoading && <p className="favorites-status">Loading...</p>}
-                {error && <p className="favorites-status">{error}</p>}
-                {!isLoading && !error && favorites.length === 0 && (
-                    <p className="favorites-status">No favorites saved yet.</p>
-                )}
+            {isLoading && <p className="favorites-status">Loading...</p>}
+            {error && <p className="favorites-status">{error}</p>}
+            {!isLoading && !error && favorites.length === 0 && (
+                <p className="favorites-status">No favorites saved yet.</p>
+            )}
 
-                <div className="favorites-list">
+            {!isLoading && !error && favorites.length > 0 && (
+                <div className="favorites-grid">
                     {favorites.map(function (fav) {
                         return (
                             <div key={fav.id} className="favorites-card">
-                                <div className="favorites-card-photo">
-                                    <i className="ti ti-photo" aria-hidden="true"></i>
+                                <div className="favorites-card-photo-wrap">
+                                    <Link to={`/restaurant/${fav.place_id}`}>
+                                        <img
+                                            src={fav.photoName ? getPhotoUrl(fav.photoName, 500) : "/hero-dining.jpeg"}
+                                            alt={fav.restaurant_name}
+                                            className="favorites-card-photo"
+                                        />
+                                    </Link>
+                                    <button
+                                        className="favorites-remove-btn"
+                                        onClick={function () { handleRemove(fav.id); }}
+                                        aria-label="Remove from favorites"
+                                    >
+                                        <i className="ti ti-trash" aria-hidden="true"></i>
+                                    </button>
                                 </div>
-                                <div className="favorites-card-body">
-                                    <div className="favorites-card-top-row">
-                                        <Link to={`/restaurant/${fav.place_id}`} className="favorites-card-name-link">
-                                            <p className="favorites-card-name">{fav.restaurant_name}</p>
-                                        </Link>
-                                        <button
-                                            className="favorites-remove-btn"
-                                            onClick={function () { handleRemove(fav.id); }}
-                                            aria-label="Remove from favorites"
-                                        >
-                                            <i className="ti ti-trash"></i>
-                                        </button>
-                                    </div>
+
+                                <div className="favorites-card-info">
+                                    <Link to={`/restaurant/${fav.place_id}`} className="favorites-card-name-link">
+                                        <p className="favorites-card-name">{fav.restaurant_name}</p>
+                                    </Link>
 
                                     <div className="favorites-note-row">
                                         <input
@@ -114,7 +133,7 @@ function FavoritesPage() {
                                                 onClick={function () { handleClearNote(fav.id); }}
                                                 aria-label="Clear note"
                                             >
-                                                <i className="ti ti-x"></i>
+                                                <i className="ti ti-x" aria-hidden="true"></i>
                                             </button>
                                         )}
                                     </div>
@@ -123,7 +142,7 @@ function FavoritesPage() {
                         );
                     })}
                 </div>
-            </div>
+            )}
         </div>
     );
 }

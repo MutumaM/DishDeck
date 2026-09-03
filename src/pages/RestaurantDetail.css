@@ -16,6 +16,7 @@
     color: var(--dd-ink);
     font-family: 'Karla', sans-serif;
     min-height: 100vh;
+    padding-top: 65px; 
 }
 
 .detail-status {

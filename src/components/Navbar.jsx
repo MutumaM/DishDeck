@@ -61,7 +61,6 @@ function Navbar(props) {
                     )}
                 </div>
 
-                <Link to="/about" className={linkClass("/about")}>About us</Link>
             </div>
 
             {showSearch && (

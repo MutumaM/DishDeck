@@ -71,7 +71,7 @@ function NeighbourhoodResults() {
                                 <div className="results-card">
                                     <div className="results-card-photo-wrap">
                                         <img
-                                            src={photoName ? getPhotoUrl(photoName, 400) : "/hero-dining.jpeg"}
+                                            src={photoName ? getPhotoUrl(photoName, 800) : "/hero-dining.jpeg"}
                                             alt={name}
                                             className="results-card-photo"
                                         />

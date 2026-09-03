@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
@@ -11,13 +11,18 @@ function Navbar(props) {
 
     const { currentUser, logout } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
 
     async function handleLogout() {
         await logout();
         navigate("/");
     }
 
-    return(
+    function linkClass(path) {
+        return location.pathname === path ? "navbar-link navbar-link-active" : "navbar-link";
+    }
+
+    return (
         <nav className="navbar">
             <Link to="/" className="navbar-logo-link">
                 <p className="navbar-logo">
@@ -26,43 +31,59 @@ function Navbar(props) {
                 </p>
             </Link>
 
-              {showSearch && (
-                <div className="navbar-search">
-                    <span className="navbar-search-icon">🔍</span>
-                    <input type="text" className="navbar-search-input" placeholder="Search DishDeck" />
+            <div className="navbar-links">
+                <Link to="/" className={linkClass("/")}>Home</Link>
+
+                <div
+                    className="navbar-dropdown-wrapper"
+                    onMouseEnter={function () { setIsDropdownOpen(true); }}
+                    onMouseLeave={function () { setIsDropdownOpen(false); }}>
+
+                    <button className="navbar-dropdown-trigger">
+                        Neighbourhoods <span aria-hidden="true">▾</span>
+                    </button>
+
+                    {isDropdownOpen && (
+                        <div className="navbar-dropdown">
+                            <div className="navbar-dropdown-panel">
+                                {neighbourhoods.map(function (name) {
+                                    return (
+                                        <Link
+                                            key={name}
+                                            to={`/neighbourhood/${name}`}
+                                            className="navbar-dropdown-item">
+                                            {name}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    )}
                 </div>
-               )}
-                    <div
-                className="navbar-dropdown-wrapper"
-                onMouseEnter={function () { setIsDropdownOpen(true); }}
-                onMouseLeave={function () { setIsDropdownOpen(false); }}>
 
-                <span className="navbar-link">Neighbourhoods ▾</span>
-
-                {isDropdownOpen && (
-                    <div className="navbar-dropdown">
-                        {neighbourhoods.map(function (name) {
-                            return (
-                                <Link
-                                    key={name}
-                                    to={`/neighbourhood/${name}`}
-                                    className="navbar-dropdown-item">
-                                    {name}
-                                </Link>
-                            );
-                        })}
-                    </div>
-                )}
+                <Link to="/about" className={linkClass("/about")}>About us</Link>
             </div>
 
-            {currentUser ? (
-                <div className="navbar-user">
-                    <Link to="/favorites" className="navbar-link">Favorites</Link>
-                    <button className="navbar-logout-btn" onClick={handleLogout}>Log out</button>
+            {showSearch && (
+                <div className="navbar-search">
+                    <span className="navbar-search-icon" aria-hidden="true">🔍</span>
+                    <input type="text" className="navbar-search-input" placeholder="Search DishDeck" />
                 </div>
-            ) : (
-                <Link to="/login" className="navbar-add-btn">Log in</Link>
             )}
+
+            <div className="navbar-actions">
+                {currentUser ? (
+                    <div className="navbar-user">
+                        <Link to="/favorites" className={linkClass("/favorites")}>Favorites</Link>
+                        <button className="navbar-logout-btn" onClick={handleLogout}>Log out</button>
+                    </div>
+                ) : (
+                    <>
+                        <Link to="/login" className="navbar-login-link">Log in</Link>
+                        <Link to="/signup" className="navbar-add-btn">Sign up</Link>
+                    </>
+                )}
+            </div>
         </nav>
     );
 }

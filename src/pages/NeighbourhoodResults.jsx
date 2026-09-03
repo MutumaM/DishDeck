@@ -6,39 +6,49 @@ import FavoriteButton from "../components/FavoriteButton";
 import { Link } from "react-router-dom";
 import "./NeighbourhoodResults.css";
 
+
+const knownNeighbourhoods = ["Westlands", "Kilimani", "Parklands", "Lavington", "CBD", "Langata"];
+
+
 function NeighbourhoodResults() {
     const { neighbourhoodName } = useParams();
-
-    const [restaurants, setRestaurants] = useState ([]);
-    const [isLoading, setIsLoading ] = useState(true);
+    const [restaurants, setRestaurants] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const isNeighbourhoodSearch = knownNeighbourhoods.some(function (n) {
+        return n.toLowerCase() === neighbourhoodName.toLowerCase();
+    });
+
+    
     useEffect(function () {
         async function loadRestaurants() {
             setIsLoading(true);
-            setError(null)
+            setError(null);
             try {
                 const results = await searchRestaurants(neighbourhoodName);
-                setRestaurants(results)
+                setRestaurants(results);
             } catch (err) {
                 setError("Couldn't load restaurants right now.");
             } finally {
-                setIsLoading(false)
+                setIsLoading(false);
             }
         }
-        loadRestaurants()
-    }, [neighbourhoodName])
+        loadRestaurants();
+    }, [neighbourhoodName]);
 
-     return (
+    return (
         <div className="results-page">
             <Navbar showSearch={true} />
 
-            <div className="results-header">
-                <p className="results-title">Restaurants in {neighbourhoodName}</p>
-                {!isLoading && !error && (
-                    <p className="results-count">{restaurants.length} places found</p>
-                )}
-            </div>
+            {isNeighbourhoodSearch && (
+                <div className="results-header">
+                    <p className="results-title">Restaurants in {neighbourhoodName}</p>
+                    {!isLoading && !error && (
+                        <p className="results-count">{restaurants.length} places found</p>
+                    )}
+                </div>
+            )}
 
             {isLoading && <p className="results-status">Loading...</p>}
             {error && <p className="results-status">{error}</p>}

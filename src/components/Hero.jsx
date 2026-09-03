@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Hero.css";
 
 const neighbourhoods = ["Westlands", "Kilimani", "Parklands", "Lavington", "the CBD", "Langata"];
 
 function Hero() {
+    const navigate = useNavigate();
     const [wordIndex, setWordIndex] = useState(0);
     const [isFading, setIsFading] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(function () {
         const interval = setInterval(function () {
@@ -23,12 +26,21 @@ function Hero() {
         };
     }, []);
 
+    function handleSearchSubmit(e) {
+        e.preventDefault();
+        const trimmed = searchTerm.trim();
+        if (!trimmed) return;
+        navigate(`/neighbourhood/${encodeURIComponent(trimmed)}`);
+    }
+
     return (
         <div className="hero">
             <img
                 className="hero-photo"
-                src="/hero-dining.jpeg"
+                src="landing-photo.png"
                 alt="People enjoying a meal together at a restaurant"
+                loading="eager"
+                fetchpriority="high"
             />
             <div className="hero-scrim"></div>
 
@@ -40,7 +52,7 @@ function Hero() {
                     </span>
                 </p>
 
-                <div className="hero-search-bar">
+                <form className="hero-search-bar" onSubmit={handleSearchSubmit}>
                     <span className="hero-search-icon">
                         <i className="ti ti-search"></i>
                     </span>
@@ -48,9 +60,11 @@ function Hero() {
                         type="text"
                         className="hero-search-input"
                         placeholder="Search restaurants or neighbourhoods"
+                        value={searchTerm}
+                        onChange={function (e) { setSearchTerm(e.target.value); }}
                     />
-                    <button className="hero-search-btn">Search</button>
-                </div>
+                    <button type="submit" className="hero-search-btn">Search</button>
+                </form>
 
                 <div className="hero-pills">
                     {neighbourhoods.map(function (name, index) {
@@ -59,11 +73,13 @@ function Hero() {
                         const delay = (400 + index * 90) + "ms";
 
                         return (
-                            <a 
-                            key={name} 
-                            href={linkTarget} 
-                            className="hero-pill" 
-                            style={{ animationDelay: delay }}> {label}
+                            <a
+                                key={name}
+                                href={linkTarget}
+                                className="hero-pill"
+                                style={{ animationDelay: delay }}
+                            >
+                                {label}
                             </a>
                         );
                     })}

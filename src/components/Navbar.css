@@ -8,9 +8,11 @@
     padding: 13px 26px;
     margin: 20px 56px 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    position: sticky;
-    top: 20px;
-    z-index: 50;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    left: 0;
+    right: 0
 }
 
 .navbar-logo-link {

@@ -50,7 +50,7 @@ export async function searchRestaurants(neighbourhoodName) {
         },
         body: JSON.stringify({
             textQuery: `restaurants in ${neighbourhoodName} Nairobi `,
-            maxResultCount: 15,
+            maxResultCount: 60,
         }),
     });
 

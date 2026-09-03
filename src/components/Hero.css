@@ -1,11 +1,10 @@
 .hero {
     position: relative;
-    border-radius: 20px;
     overflow: hidden;
-    margin: 24px auto;
-    height: 380px;
-    width: 90%;
-    max-width: 1000px;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    border-radius: 0;
 }
 
 .hero-photo {
@@ -22,7 +21,8 @@
 }
 
 .hero-content {
-    position: relative;
+    position: absolute;
+    inset: 0;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -81,7 +81,7 @@
 }
 
 .hero-search-btn {
-    background-color: #b8722f;
+    background-color: #2952e3;
     color: white;
     border: none;
     padding: 10px 22px;
@@ -92,7 +92,7 @@
 }
 
 .hero-search-btn:hover {
-    background-color: #995e26;
+    background-color: #1f3fb8;
 }
 
 .hero-pills {

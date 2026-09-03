@@ -17,6 +17,7 @@ function FavoritesPage() {
             try {
                 const data = await getFavorites();
 
+                
                 const withPhotos = await Promise.all(data.map(async function (fav) {
                     try {
                         const details = await getPlaceDetails(fav.place_id);
@@ -37,7 +38,11 @@ function FavoritesPage() {
         loadFavorites();
     }, []);
 
-    async function handleRemove(favoriteId) {
+    async function handleRemove(favoriteId, restaurantName) {
+        const confirmed = window.confirm(`Remove "${restaurantName}" from your favorites?`);
+        if (!confirmed) {
+            return;
+        }
         await removeFavorite(favoriteId);
         setFavorites(favorites.filter(function (f) { return f.id !== favoriteId; }));
     }
@@ -106,7 +111,7 @@ function FavoritesPage() {
                                     </Link>
                                     <button
                                         className="favorites-remove-btn"
-                                        onClick={function () { handleRemove(fav.id); }}
+                                        onClick={function () { handleRemove(fav.id, fav.restaurant_name); }}
                                         aria-label="Remove from favorites"
                                     >
                                         <i className="ti ti-trash" aria-hidden="true"></i>

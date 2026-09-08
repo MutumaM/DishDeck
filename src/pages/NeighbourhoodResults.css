@@ -3,6 +3,10 @@
     text-align: center;
 }
 
+.results-page {
+    padding-top: 90px;
+}
+
 .results-title {
     font-family: var(--font-voice, serif);
     font-size: 26px;

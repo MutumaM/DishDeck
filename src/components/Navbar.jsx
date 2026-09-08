@@ -4,10 +4,12 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
 const neighbourhoods = ["Westlands", "Kilimani", "Parklands", "Lavington", "CBD", "Langata"];
+const cuisines = ["Kenyan", "Italian", "Chinese", "Indian", "Seafood", "Ethopian", "Mexican", "Fast food", "Cafes"];
 
 function Navbar(props) {
     const showSearch = props.showSearch
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isCuisineDropdownOpen, setIsCuisineDropdownOpen] = useState(false);
 
     const { currentUser, logout } = useAuth();
     const navigate = useNavigate();
@@ -53,6 +55,33 @@ function Navbar(props) {
                                             to={`/neighbourhood/${name}`}
                                             className="navbar-dropdown-item">
                                             {name}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                <div
+                    className="navbar-dropdown-wrapper"
+                    onMouseEnter={function () { setIsCuisineDropdownOpen(true); }}
+                    onMouseLeave={function () { setIsCuisineDropdownOpen(false); }}>
+
+                    <button className="navbar-dropdown-trigger">
+                        Cuisines <span aria-hidden="true">▾</span>
+                    </button>
+
+                    {isCuisineDropdownOpen && (
+                        <div className="navbar-dropdown">
+                            <div className="navbar-dropdown-panel">
+                                {cuisines.map(function (cuisine) {
+                                    return (
+                                        <Link
+                                            key={cuisine}
+                                            to={`/neighbourhood/${encodeURIComponent(cuisine + " restaurants Nairobi")}`}
+                                            className="navbar-dropdown-item">
+                                            {cuisine}
                                         </Link>
                                     );
                                 })}
